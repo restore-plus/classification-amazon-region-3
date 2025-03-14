@@ -4,6 +4,7 @@
 <img src=".github/images/sits_sticker.png" alt="SITS icon" align="right" height="150" width="150"/>
 
 <!-- badges: start -->
+
 <!-- badges: end -->
 
 Classification using Landsat-8 (1996, 2014 - 2022) for Region 3 defined
@@ -18,7 +19,7 @@ repository:
 git clone https://github.com/restore-plus/classification-amazon-region-3
 ```
 
-Next, open the `classification-amazon-region-4` directory in the RStudio
+Next, open the `classification-amazon-region-3` directory in the RStudio
 and install the examples package:
 
 ``` r
