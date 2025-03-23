@@ -1,5 +1,5 @@
 
-# Classification Amazon (Region 3)
+# Amazon Classification (Region 3)
 
 <img src=".github/images/sits_sticker.png" alt="SITS icon" align="right" height="150" width="150"/>
 
@@ -7,8 +7,8 @@
 
 <!-- badges: end -->
 
-Classification using Landsat-8 (1996, 2014 - 2022) for Region 3 defined
-in the scope of the Restore+ Project.
+Amazon classification using Landsat collection (1996 - 2022) for Region
+3 defined in the scope of the Restore+ Project.
 
 ## Getting started
 
@@ -41,7 +41,8 @@ well-documented and includes all necessary data and scripts.
 ## License
 
 The source code in this repository is licensed under GNU GENERAL PUBLIC
-LICENSE V3. Data and results are under the Creative Commons CC0 License.
+LICENSE V3. Data and results are under the Creative Commons [CC BY-NC-SA
+4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/) License.
 
 ## Contact
 
