@@ -56,13 +56,13 @@ for (cube_year in cube_years) {
   print(paste0("Processing: ", cube_year))
 
   #
-  # 3.1. Define cube dates
+  # 4.1. Define cube dates
   #
   start_date <- paste0(cube_year, "-01-01")
   end_date   <- paste0(cube_year, "-12-31")
 
   #
-  # 3.2. Define regularization timeline (P3M)
+  # 4.2. Define regularization timeline (P3M)
   #
   regularization_timeline <- c(
     paste0(cube_year, "-01-01"),
@@ -74,7 +74,7 @@ for (cube_year in cube_years) {
   regularization_timeline <- as.Date(regularization_timeline)
 
   #
-  # 3.3. Define platform
+  # 4.3. Define platform
   #
   platform <- NULL
 
@@ -83,14 +83,14 @@ for (cube_year in cube_years) {
   }
 
   #
-  # 3.4. Create a directory for the current year
+  # 4.4. Create a directory for the current year
   #
   cube_dir_year <- path(cube_base_dir) / cube_year
 
   fs::dir_create(cube_dir_year, recurse = TRUE)
 
   #
-  # 3.5. Load cube
+  # 4.5. Load cube
   #
   cube_year <- sits_cube(
     source     = "MPC",
@@ -103,7 +103,7 @@ for (cube_year in cube_years) {
   )
 
   #
-  # 3.6. Regularize
+  # 4.6. Regularize
   #
   reg_cube <- sits_regularize(
     cube        = cube_year,
