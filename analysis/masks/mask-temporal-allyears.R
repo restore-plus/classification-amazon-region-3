@@ -4,30 +4,43 @@ library(restoreutils)
 #
 # General definitions
 #
-mask_version <- "mask-mcti-v3"
-files_version <- "mask-terraclass-step13step14-perene-trajectory-only-perene-reclass"
-output_version <- "plus-trajectory-neighbor"
 
-base_output_dir <- "data/derived/masks"
+# Local directories
+base_masks_dir <- restoreutils::project_masks_dir()
+base_classifications_dir <- restoreutils::project_classifications_dir()
 
+# Mask - version
+mask_version <- "mask-v1"
+
+# Mask - input files version
+files_version <- "mask-prodes-step13"
+
+# Mask - output files version
+output_version <- "temporal-neighbor-perene"
+
+# Mask - perene class (to be reviewed in time)
 perene_class_id      <- 2  # "Ag_perene"
+
+# Mask - replacement class (class to replace perene if rule 14 is applied)
 replacement_class_id <- 21 # "Pasto_Perene"
 
-memsize <- 200
-multicores <- 32
+# Hardware - Multicores
+multicores <- 40
+
+# Hardware - Memory size
+memsize <- 180
 
 
 #
 # 1. Generate directories
 #
-output_dir <- create_data_dir(base_output_dir, mask_version)
-output_dir <- create_data_dir(output_dir, "perene-transitions")
+output_dir <- create_data_dir(base_masks_dir / mask_version, "temporal-allyears")
 
 
 #
 # 2. Get masks files
 #
-files <- get_restore_masks_files(
+files <- restoreutils::get_restore_masks_files(
   mask_version = mask_version,
   files_version = files_version,
   multicores = multicores,
@@ -52,7 +65,7 @@ file_reclassified <- restoreutils::reclassify_rule14_temporal_neighbor_perene(
 #
 # 4. Save results as classification maps
 #
-restoreutils::reclassify_perene_result_to_maps(
+restoreutils::reclassify_temporal_results_to_maps(
   files             = files,
   file_reclassified = file_reclassified,
   version           = output_version
