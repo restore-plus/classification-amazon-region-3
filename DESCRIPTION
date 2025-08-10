@@ -16,4 +16,5 @@ Imports:
     sits (>= 1.5.3),
     ntfy,
     readr,
+    gdalcubes,
     restoreutils
