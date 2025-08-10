@@ -3,6 +3,7 @@
 .RData
 .Ruserdata
 .DS_Store
+*.done
 data/derived/mosaics/
 data/derived/masks/
 data/derived/cubes/
