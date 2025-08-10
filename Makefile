@@ -73,6 +73,20 @@ masks-clean:
 
 
 #
+# renv toggle (useful when nix is in use)
+#
+.PHONY: renv-disable renv-enable
+
+renv-disable:
+	@sed -i.bak '/^source("renv\/activate.R")/s/^/#/' .Rprofile
+	@echo "Disabled renv in .Rprofile (backup saved as .Rprofile.bak)"
+
+renv-enable:
+	@sed -i.bak '/^#source("renv\/activate.R")/s/^#//' .Rprofile
+	@echo "Enabled renv in .Rprofile (backup saved as .Rprofile.bak)"
+
+
+#
 # all / clean convenience targets
 #
 .PHONY: all clean
