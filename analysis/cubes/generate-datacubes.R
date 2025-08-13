@@ -2,6 +2,7 @@ set.seed(777)
 
 library(sits)
 library(restoreutils)
+library(restoreclassificationeco3)
 
 #
 # General definitions
@@ -12,16 +13,16 @@ processing_context <- "eco 3"
 cubes_dir <- restoreutils::project_cubes_dir()
 
 # Bands
-cube_bands <- c("BLUE", "GREEN", "RED", "NIR08", "SWIR16", "SWIR22", "CLOUD")
+cube_bands <- c("BLUE", "GREEN", "RED", "NIR" , "SWIR1", "SWIR2")
 
 # Processing years
-regularization_years <- 2015:2024
+regularization_years <- c(2019, 2020, 2021, 2022, 2013, 2012, 2011)
 
 # Hardware - Multicores
-multicores <- 60
+multicores <- 40
 
 # Hardware - Memory size
-memsize <- 220
+memsize <- 180
 
 
 #
@@ -42,6 +43,9 @@ bdc_tiles <- sits_roi_to_tiles(
   grid_system = "BDC_MD_V2"
 )
 
+bdc_tiles_bbox <- sf::st_union(bdc_tiles) |>
+  sf::st_bbox()
+
 
 #
 # 3. Process cubes
@@ -60,27 +64,20 @@ for (regularization_year in regularization_years) {
   cube_start_date <- paste0(regularization_year, "-01-01")
   cube_end_date   <- paste0(regularization_year, "-12-31")
 
-  # Create cube timeline (P1M)
-  cube_timeline <- tibble::tibble(month = 1:12) |>
-    dplyr::mutate(date = as.Date(paste0(
-      regularization_year, "-", sprintf("%02d", month), "-01"
-    ))) |>
-    dplyr::pull()
+  # Load cube
+  cube_year <- sits_cube(
+    source      = "OGH",
+    collection  = "LANDSAT-GLAD-2M",
+    roi         = bdc_tiles_bbox,
+    crs         = "EPSG:4326",
+    start_date  = cube_start_date,
+    end_date    = cube_end_date,
+    bands       = cube_bands
+  )
 
   # Regularize tile by tile
   purrr::map(bdc_tiles[["tile_id"]], function(tile) {
     print(tile)
-
-    # Load cube
-    cube_year <- sits_cube(
-      source      = "BDC",
-      collection  = "LANDSAT-OLI-16D",
-      tiles       = tile,
-      grid_system = "BDC_MD_V2",
-      start_date  = cube_start_date,
-      end_date    = cube_end_date,
-      bands       = cube_bands
-    )
 
     if (nrow(cube_year) == 0) {
       return(NULL)
@@ -89,11 +86,12 @@ for (regularization_year in regularization_years) {
     # Regularize
     cube_year_reg <- sits_regularize(
       cube        = cube_year,
-      period      = "P1M",
-      res         = 300,
+      period      = "P2M",
+      res         = 30,
+      tiles       = tile,
+      grid_system = "BDC_MD_V2",
       multicores  = multicores,
-      output_dir  = cube_year_dir,
-      timeline    = cube_timeline
+      output_dir  = cube_year_dir
     )
 
     if (nrow(cube_year_reg) == 0) {
@@ -101,7 +99,7 @@ for (regularization_year in regularization_years) {
     }
 
     # Generate indices
-    cube_year_reg <- restoreutils::cube_generate_indices(
+    cube_year_reg <- restoreclassificationeco3::cube_generate_indices(
       cube = cube_year_reg,
       output_dir = cube_year_dir,
       multicores = multicores,

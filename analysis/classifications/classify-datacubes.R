@@ -13,19 +13,19 @@ base_cubes_dir <- restoreutils::project_cubes_dir()
 base_classifications_dir <- restoreutils::project_classifications_dir()
 
 # Model
-model_version <- "random-forest-model_no-lbae"
+model_version <- "random-forest-model_no-lbae-ogh"
 
 # Classification - version
-classification_version <- "samples-v2-eco3"
+classification_version <- "samples-v2-eco3-ogh"
 
 # Classification - years
-regularization_years <- 2015:2024
+regularization_years <- 2019:2022
 
 # Hardware - Multicores
-multicores <- 60
+multicores <- 40
 
 # Hardware - Memory size
-memsize <- 220
+memsize <- 180
 
 
 #
@@ -83,7 +83,7 @@ for (classification_year in regularization_years) {
     memsize    = memsize,
     output_dir = classification_dir,
     progress   = TRUE,
-    version    = version
+    version    = classification_version
   )
 
   # Define classification labels
@@ -93,7 +93,7 @@ for (classification_year in regularization_years) {
     memsize    = memsize,
     output_dir = classification_dir,
     progress   = TRUE,
-    version    = version
+    version    = classification_version
   )
 
   # Mosaic cubes
@@ -101,6 +101,6 @@ for (classification_year in regularization_years) {
     cube       = class,
     multicores = multicores,
     output_dir = classification_dir,
-    version    = version
+    version    = classification_version
   )
 }
