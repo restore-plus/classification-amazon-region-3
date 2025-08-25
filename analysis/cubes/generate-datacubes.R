@@ -16,7 +16,7 @@ cubes_dir <- restoreutils::project_cubes_dir()
 cube_bands <- c("BLUE", "GREEN", "RED", "NIR" , "SWIR1", "SWIR2")
 
 # Processing years
-regularization_years <- c(2019, 2020, 2021, 2022, 2013, 2012, 2011)
+regularization_years <- c(2013, 2012, 2011, 2010, 2007, 2005)
 
 # Hardware - Multicores
 multicores <- 40
@@ -30,7 +30,8 @@ memsize <- 180
 #
 eco_region_roi <- restoreutils::roi_ecoregions(
   region_id = 3,
-  crs = restoreutils::crs_bdc()
+  crs = restoreutils::crs_bdc(),
+  as_convex = TRUE
 )
 
 
