@@ -19,16 +19,16 @@ mask_tiles <- c()
 mask_version <- "mask-v1"
 
 # Classification - version
-classification_version <- "samples-v2-eco3"
+classification_version <- "samples-v2-eco3-ogh"
 
 # Classification - years
 classification_year <- 2021
 
 # Hardware - Multicores
-multicores <- 40
+multicores <- 60
 
 # Hardware - Memory size
-memsize <- 180
+memsize <- 200
 
 
 #
@@ -62,7 +62,7 @@ terraclass_2020 <- load_terraclass_2020(multicores = multicores, memsize = memsi
 #
 eco3_class <- load_restore_map(data_dir = classification_dir,
                                multicores = multicores,
-                               memsize = memsize)
+                               memsize = memsize, version = classification_version)
 
 
 #
