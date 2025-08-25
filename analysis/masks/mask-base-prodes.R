@@ -8,15 +8,6 @@ memsize <- 120
 multicores <- 36
 
 version <- "v2"
-base_output_dir <- "data/raw/masks/prodes-mask-forest/"
-
-# Recover the PRODES classified cube
-prodes_2024 <- load_prodes_2024(multicores = multicores, memsize = memsize)
-
-#
-# Create base output dir
-#
-base_output_dir <- create_data_dir(base_output_dir, version)
 
 #
 # Note: We start generating masks in 2023, as 2024 is the most recent data, and
@@ -27,158 +18,122 @@ base_output_dir <- create_data_dir(base_output_dir, version)
 #
 # 2023
 #
-output_dir <- create_data_dir(base_output_dir, "2023")
-
-sits_reclassify(
-  cube = prodes_2024,
-  mask = prodes_2024,
-  rules = list(
-    "Vegetação Nativa" = cube == "Vegetação Nativa" | cube %in% c("d2024")
-  ),
-  multicores = multicores,
-  memsize    = memsize,
-  output_dir = output_dir
+restoreutils::prodes_generate_forest_mask(
+  target_year = 2023,
+  version     = version,
+  multicores  = multicores,
+  memsize     = memsize
 )
+
 
 #
 # 2022
 #
-output_dir <- create_data_dir(base_output_dir, "2022")
-
-sits_reclassify(
-  cube = prodes_2024,
-  mask = prodes_2024,
-  rules = list(
-    "Vegetação Nativa" = cube == "Vegetação Nativa" | cube %in% c("d2024", "d2023")
-  ),
-  multicores = multicores,
-  memsize    = memsize,
-  output_dir = output_dir
+restoreutils::prodes_generate_forest_mask(
+  target_year = 2022,
+  version     = version,
+  multicores  = multicores,
+  memsize     = memsize
 )
+
 
 #
 # 2021
 #
-output_dir <- create_data_dir(base_output_dir, "2021")
-
-sits_reclassify(
-  cube = prodes_2024,
-  mask = prodes_2024,
-  rules = list(
-    "Vegetação Nativa" = cube == "Vegetação Nativa" | cube %in% c("d2024", "d2023", "d2022")
-  ),
-  multicores = multicores,
-  memsize    = memsize,
-  output_dir = output_dir
+restoreutils::prodes_generate_forest_mask(
+  target_year = 2021,
+  version     = version,
+  multicores  = multicores,
+  memsize     = memsize
 )
+
 
 #
 # 2020
 #
-output_dir <- create_data_dir(base_output_dir, "2020")
-
-sits_reclassify(
-  cube = prodes_2024,
-  mask = prodes_2024,
-  rules = list(
-    "Vegetação Nativa" = cube == "Vegetação Nativa" | cube %in% c(
-      "d2024", "d2023", "d2022", "d2021"
-    )
-  ),
-  multicores = multicores,
-  memsize    = memsize,
-  output_dir = output_dir
+restoreutils::prodes_generate_forest_mask(
+  target_year = 2020,
+  version     = version,
+  multicores  = multicores,
+  memsize     = memsize
 )
 
 #
 # 2019
 #
-output_dir <- create_data_dir(base_output_dir, "2019")
-
-sits_reclassify(
-  cube = prodes_2024,
-  mask = prodes_2024,
-  rules = list(
-    "Vegetação Nativa" = cube == "Vegetação Nativa" | cube %in% c(
-      "d2024", "d2023", "d2022", "d2021", "d2020"
-    )
-  ),
-  multicores = multicores,
-  memsize    = memsize,
-  output_dir = output_dir
+restoreutils::prodes_generate_forest_mask(
+  target_year = 2019,
+  version     = version,
+  multicores  = multicores,
+  memsize     = memsize
 )
 
 #
 # 2018
 #
-output_dir <- create_data_dir(base_output_dir, "2018")
-
-sits_reclassify(
-  cube = prodes_2024,
-  mask = prodes_2024,
-  rules = list(
-    "Vegetação Nativa" = cube == "Vegetação Nativa" | cube %in% c(
-      "d2024", "d2023", "d2022", "d2021", "d2020", "d2019"
-    )
-  ),
-  multicores = multicores,
-  memsize    = memsize,
-  output_dir = output_dir
+restoreutils::prodes_generate_forest_mask(
+  target_year = 2018,
+  version     = version,
+  multicores  = multicores,
+  memsize     = memsize
 )
 
 #
 # 2017
 #
-output_dir <- create_data_dir(base_output_dir, "2017")
-
-sits_reclassify(
-  cube = prodes_2024,
-  mask = prodes_2024,
-  rules = list(
-    "Vegetação Nativa" = cube == "Vegetação Nativa" | cube %in% c(
-      "d2024", "d2023", "d2022", "d2021", "d2020", "d2019",
-      "d2018"
-    )
-  ),
-  multicores = multicores,
-  memsize    = memsize,
-  output_dir = output_dir
+restoreutils::prodes_generate_forest_mask(
+  target_year = 2017,
+  version     = version,
+  multicores  = multicores,
+  memsize     = memsize
 )
 
 #
 # 2016
 #
-output_dir <- create_data_dir(base_output_dir, "2016")
-
-sits_reclassify(
-  cube = prodes_2024,
-  mask = prodes_2024,
-  rules = list(
-    "Vegetação Nativa" = cube == "Vegetação Nativa" | cube %in% c(
-      "d2024", "d2023", "d2022", "d2021", "d2020", "d2019",
-      "d2018", "d2017"
-    )
-  ),
-  multicores = multicores,
-  memsize    = memsize,
-  output_dir = output_dir
+restoreutils::prodes_generate_forest_mask(
+  target_year = 2016,
+  version     = version,
+  multicores  = multicores,
+  memsize     = memsize
 )
 
 #
 # 2015
 #
-output_dir <- create_data_dir(base_output_dir, "2015")
+restoreutils::prodes_generate_forest_mask(
+  target_year = 2015,
+  version     = version,
+  multicores  = multicores,
+  memsize     = memsize
+)
 
-sits_reclassify(
-  cube = prodes_2024,
-  mask = prodes_2024,
-  rules = list(
-    "Vegetação Nativa" = cube == "Vegetação Nativa" | cube %in% c(
-      "d2024", "d2023", "d2022", "d2021", "d2020", "d2019",
-      "d2018", "d2017", "d2016"
-    )
-  ),
-  multicores = multicores,
-  memsize    = memsize,
-  output_dir = output_dir
+#
+# 2010
+#
+restoreutils::prodes_generate_forest_mask(
+  target_year = 2010,
+  version     = version,
+  multicores  = multicores,
+  memsize     = memsize
+)
+
+#
+# 2005
+#
+restoreutils::prodes_generate_forest_mask(
+  target_year = 2005,
+  version     = version,
+  multicores  = multicores,
+  memsize     = memsize
+)
+
+#
+# 2000
+#
+restoreutils::prodes_generate_forest_mask(
+  target_year = 2000,
+  version     = version,
+  multicores  = multicores,
+  memsize     = memsize
 )
