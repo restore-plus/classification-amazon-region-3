@@ -16,7 +16,7 @@ base_classifications_dir <- restoreutils::project_classifications_dir()
 model_version <- "random-forest-model_no-lbae" # "random-forest-model_no-lbae-ogh"
 
 # Classification - version
-classification_version <- "samples-v3-eco3-bdc"
+classification_version <- "samples-v2-eco3-bdc"
 
 # Classification - years
 regularization_years <- c(2000, 2005, 2010) # c(2000, 2005, 2010, 2015) # c(2005, 2007, 2010, 2011, 2012, 2013, 2015)
