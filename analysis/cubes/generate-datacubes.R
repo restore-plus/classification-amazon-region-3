@@ -10,7 +10,7 @@ library(restoreclassificationeco3)
 processing_context <- "eco 3"
 
 # Output dir
-cubes_dir <- restoreutils::project_cubes_dir()
+cubes_dir <- restoreutils::project_cubes_dir() / "ogh"
 
 # Bands
 cube_bands <- c("BLUE", "GREEN", "RED", "NIR" , "SWIR1", "SWIR2")
