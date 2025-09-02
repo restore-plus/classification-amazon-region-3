@@ -16,10 +16,10 @@ base_classifications_dir <- restoreutils::project_classifications_dir()
 mask_tiles <- c()
 
 # Mask - version
-mask_version <- "mask-v1"
+mask_version <- "data-comparison-ogh"
 
 # Classification - version
-classification_version <- "samples-v2-eco3"
+classification_version <- "samples-v2-eco3-ogh"
 
 # Classification - years
 classification_year <- 2015
@@ -65,7 +65,8 @@ terraclass_2014 <- load_terraclass_2014(multicores = multicores, memsize = memsi
 #
 eco3_class <- load_restore_map(data_dir = classification_dir,
                                multicores = multicores,
-                               memsize = memsize)
+                               memsize = memsize,
+                               version = classification_version)
 
 
 #
