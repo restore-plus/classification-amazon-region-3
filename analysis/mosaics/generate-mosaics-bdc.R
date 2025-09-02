@@ -1,4 +1,4 @@
-# Sys.setenv("RESTOREPLUS_CUBE_DIR" = "/data/projects/classification-region-3-bytile/data/derived/cube-region-3/")
+Sys.setenv("RESTOREPLUS_CUBE_DIR" = "/data/projects/classification-region-3-bytile/data/derived/cube-region-3/")
 
 set.seed(777)
 
@@ -10,7 +10,7 @@ library(restoreutils)
 #
 processing_context <- "eco 3"
 
-processing_product <- "ogh"
+processing_product <- "bdc"
 
 # Local directories
 base_cubes_dir <- restoreutils::project_cubes_dir()
@@ -20,13 +20,13 @@ base_mosaic_dir <- restoreutils::project_mosaics_dir() / processing_product
 base_dropbox_dir <- restoreutils::dropbox_dir("mosaic") / processing_product
 
 # Bands
-bands <- c("SWIR1", "NIR", "BLUE")
+bands <- c("SWIR16", "NIR08", "BLUE")
 
 # Processing years
-regularization_years <- c(2010)
+regularization_years <- c(2000, 2005, 2010)
 
 # Hardware - Multicores
-multicores <- 60
+multicores <- 52
 
 
 #
@@ -46,7 +46,7 @@ for (regularization_year in regularization_years) {
   print(regularization_year)
 
   # Define local directories
-  cube_dir <- restoreutils::create_data_dir(base_cubes_dir, paste0("ogh/", regularization_year))
+  cube_dir <- base_cubes_dir / regularization_year
   mosaic_dir <- restoreutils::create_data_dir(base_mosaic_dir, regularization_year)
 
   # Define dropbox directory
@@ -57,8 +57,8 @@ for (regularization_year in regularization_years) {
 
   # Load cube
   cube <- sits_cube(
-    source     = "OGH",
-    collection = "LANDSAT-GLAD-2M",
+    source     = "BDC",
+    collection = "LANDSAT-OLI-16D",
     bands      = bands,
     data_dir   = cube_dir
   )
@@ -68,7 +68,7 @@ for (regularization_year in regularization_years) {
     restoreutils::notify(processing_context,
                          paste("generate mosaics > processing", regularization_year))
 
-    tiles <- restoreclassificationeco3::cube_to_rgb_mosaic(
+    tiles <- restoreclassificationeco3::cube_to_rgb_mosaic_bdc(
       cube       = cube,
       output_dir = mosaic_dir,
       roi_file   = eco_region_roi,
