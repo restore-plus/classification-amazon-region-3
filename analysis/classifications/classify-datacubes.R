@@ -9,17 +9,17 @@ library(restoreutils)
 processing_context <- "eco 3"
 
 # Local directories
-base_cubes_dir <- fs::path("/data/projects/classification-region-3-bytile/data/derived/cube-region-3/") # restoreutils::project_cubes_dir()
+base_cubes_dir <- restoreutils::project_cubes_dir() / "ogh"
 base_classifications_dir <- restoreutils::project_classifications_dir()
 
 # Model
-model_version <- "random-forest-model_no-lbae" # "random-forest-model_no-lbae-ogh"
+model_version <-"random-forest-model_no-lbae-ogh"
 
 # Classification - version
-classification_version <- "samples-v2-eco3-bdc"
+classification_version <- "samples-v2-eco3-ogh"
 
 # Classification - years
-regularization_years <- c(2000, 2005, 2010) # c(2000, 2005, 2010, 2015) # c(2005, 2007, 2010, 2011, 2012, 2013, 2015)
+regularization_years <- c(2016, 2017, 2018)
 
 # Hardware - Multicores
 multicores <- 36
@@ -58,8 +58,8 @@ for (classification_year in regularization_years) {
 
   # Load cube
   cube <- sits_cube(
-    source     = "BDC",
-    collection = "LANDSAT-OLI-16D",
+    source     = "OGH",
+    collection = "LANDSAT-GLAD-2M",
     data_dir   = cube_dir,
     roi        = eco_region_roi
   )
