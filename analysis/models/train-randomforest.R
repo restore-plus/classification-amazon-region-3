@@ -1,3 +1,5 @@
+set.seed(777)
+
 library(sits)
 library(restoreutils)
 
@@ -12,7 +14,7 @@ samples_file <- "data/derived/timeseries/samples-eco3.rds"
 base_output_dir <- "data/derived/"
 
 # Model version
-model_version <- "random-forest-model_no-lbae"
+model_version <- "random-forest-model_no-lbae_noperene"
 
 
 #
@@ -24,7 +26,8 @@ model_dir <- restoreutils::create_data_dir(base_output_dir, "models")
 #
 # 2. Load samples
 #
-samples_ts <- readRDS(samples_file)
+samples_ts <- readRDS(samples_file) |>
+                dplyr::filter(.data[["label"]] != "Ag_perene")
 
 
 #
