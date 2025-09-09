@@ -22,10 +22,10 @@ classification_version <- "samples-v2-noperene-eco3"
 regularization_years <- 2022
 
 # Hardware - Multicores
-multicores <- 36
+multicores <- 32
 
 # Hardware - Memory size
-memsize <- 180
+memsize <- 172
 
 
 #
@@ -58,6 +58,8 @@ for (classification_year in regularization_years) {
   classification_dir <- restoreutils::create_data_dir(
     base_classifications_dir / classification_version, classification_year
   )
+
+  classification_rds <- classification_dir / "mosaic.rds"
 
   # Load cube
   cube <- sits_cube(
@@ -106,4 +108,7 @@ for (classification_year in regularization_years) {
     output_dir = classification_dir,
     version    = classification_version
   )
+
+  # Save rds
+  saveRDS(mosaic_cube, classification_rds)
 }
