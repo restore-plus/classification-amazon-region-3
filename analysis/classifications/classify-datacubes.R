@@ -9,7 +9,7 @@ library(restoreutils)
 processing_context <- "eco 3"
 
 # Local directories
-base_cubes_dir <- restoreutils::project_cubes_dir()
+base_cubes_dir <- restoreutils::project_cubes_dir() / "ogh"
 base_classifications_dir <- restoreutils::project_classifications_dir()
 
 # Model
@@ -76,7 +76,7 @@ for (classification_year in regularization_years) {
     multicores  = multicores,
     memsize     = memsize,
     output_dir  = classification_dir,
-    roi         = eco_region_roi,
+    # roi         = eco_region_roi,
     progress    = TRUE,
     version     = classification_version
   )

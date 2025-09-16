@@ -8,7 +8,7 @@ library(restoreutils)
 #
 
 # Samples
-samples_file <- "data/derived/timeseries/samples-eco3.rds"
+samples_file <- "data/derived/timeseries/samples_no-lbae-ogh-2022.rds"
 
 # Output dir
 base_output_dir <- "data/derived/"

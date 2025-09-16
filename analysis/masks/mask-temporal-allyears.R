@@ -40,12 +40,14 @@ output_dir <- create_data_dir(base_masks_dir / mask_version, "temporal-allyears"
 #
 # 2. Get masks files
 #
-files <- restoreutils::get_restore_masks_files(
+files <- restoreclassificationeco3::get_restore_masks_files(
   mask_version = mask_version,
   files_version = files_version,
   multicores = multicores,
   memsize = memsize
 )
+
+
 
 
 #

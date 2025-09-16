@@ -25,10 +25,10 @@ classification_version <- "samples-v2-noperene-eco3"
 classification_year <- 2022
 
 # Hardware - Multicores
-multicores <- 40
+multicores <- 60
 
 # Hardware - Memory size
-memsize <- 180
+memsize <- 200
 
 # Classification map - labels
 default_label <- c(
