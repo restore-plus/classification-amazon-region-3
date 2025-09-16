@@ -9,23 +9,23 @@ library(restoreutils)
 processing_context <- "eco 3"
 
 # Local directories
-base_cubes_dir <- restoreutils::project_cubes_dir() / "ogh"
+base_cubes_dir <- restoreutils::project_cubes_dir()
 base_classifications_dir <- restoreutils::project_classifications_dir()
 
 # Model
-model_version <- "random-forest-model_no-lbae_noperene"
+model_version <- "random-forest-model_eco3-2010"
 
 # Classification - version
-classification_version <- "samples-v2-noperene-eco3"
+classification_version <- "samples-v1-2010-eco3"
 
 # Classification - years
-regularization_years <- 2022
+regularization_years <- 2000:2014
 
 # Hardware - Multicores
-multicores <- 32
+multicores <- 60
 
 # Hardware - Memory size
-memsize <- 172
+memsize <- 170
 
 
 #
@@ -63,10 +63,10 @@ for (classification_year in regularization_years) {
 
   # Load cube
   cube <- sits_cube(
-    source     = "BDC",
-    collection = "LANDSAT-OLI-16D",
-    data_dir   = cube_dir,
-    roi        = eco_region_roi
+    source      = "OGH",
+    collection  = "LANDSAT-GLAD-2M",
+    data_dir    = cube_dir,
+    roi         = eco_region_roi
   )
 
   # Classify cube
@@ -76,7 +76,6 @@ for (classification_year in regularization_years) {
     multicores  = multicores,
     memsize     = memsize,
     output_dir  = classification_dir,
-    # roi         = eco_region_roi,
     progress    = TRUE,
     version     = classification_version
   )
