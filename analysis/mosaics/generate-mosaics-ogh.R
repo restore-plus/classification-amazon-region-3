@@ -21,7 +21,7 @@ base_dropbox_dir <- restoreutils::dropbox_dir("mosaic") / processing_product
 bands <- c("SWIR1", "NIR", "BLUE")
 
 # Processing years
-regularization_years <- c(2019, 2020, 2021, 2022)
+regularization_years <- c(2014)
 
 # Hardware - Multicores
 multicores <- 52
@@ -44,7 +44,7 @@ for (regularization_year in regularization_years) {
   print(regularization_year)
 
   # Define local directories
-  cube_dir <- restoreutils::create_data_dir(base_cubes_dir, paste0("ogh/", regularization_year))
+  cube_dir <- restoreutils::create_data_dir(base_cubes_dir, regularization_year)
   mosaic_dir <- restoreutils::create_data_dir(base_mosaic_dir, regularization_year)
 
   # Define dropbox directory
