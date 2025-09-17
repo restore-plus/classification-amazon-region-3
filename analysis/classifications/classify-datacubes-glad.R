@@ -19,7 +19,10 @@ model_version <- "random-forest-model_eco3-2010"
 classification_version <- "samples-v1-2010-eco3"
 
 # Classification - years
-regularization_years <- 2000:2014
+regularization_years <- 2002
+
+# Classification - tiles
+classification_tiles <- c()
 
 # Hardware - Multicores
 multicores <- 60
@@ -68,6 +71,10 @@ for (classification_year in regularization_years) {
     data_dir    = cube_dir,
     roi         = eco_region_roi
   )
+
+  if (length(classification_tiles) > 0) {
+    cube <- sits_select(cube, tiles = classification_tiles)
+  }
 
   # Classify cube
   probs <- sits_classify(
