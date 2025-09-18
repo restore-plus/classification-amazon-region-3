@@ -16,10 +16,10 @@ base_classifications_dir <- restoreutils::project_classifications_dir()
 mask_tiles <- c()
 
 # Mask - version
-mask_version <- "data-comparison-bdc"
+mask_version <- "v1"
 
 # Classification - version
-classification_version <- "samples-v3-eco3-bdc"
+classification_version <- "samples-v1-2010-eco3"
 
 # Classification - years
 classification_year <- 2010
@@ -51,10 +51,10 @@ classification_dir <- (
 prodes <- load_prodes_2010(multicores = multicores, memsize = memsize)
 
 # Terraclass
-terraclass_2018 <- load_terraclass_2018(multicores = multicores, memsize = memsize)
+terraclass_2022 <- load_terraclass_2022(multicores = multicores, memsize = memsize)
 
 # Terraclass
-terraclass_2022 <- load_terraclass_2022(multicores = multicores, memsize = memsize)
+terraclass_2010 <- load_terraclass_2010(multicores = multicores, memsize = memsize)
 
 #
 # 3. Load classification
