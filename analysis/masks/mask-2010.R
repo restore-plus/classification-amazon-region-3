@@ -188,7 +188,7 @@ eco3_mask <- restoreutils::reclassify_rule15_urban_area_glad(
 # Rule 11
 eco3_mask <- restoreutils::reclassify_rule16_water_glad(
   cube       = eco3_mask,
-  mask       = terraclass2010,
+  mask       = terraclass_2010,
   multicores = multicores,
   memsize    = memsize,
   output_dir = output_dir,
