@@ -25,26 +25,10 @@ classification_version <- "samples-v2-noperene-eco3"
 classification_year <- 2022
 
 # Hardware - Multicores
-multicores <- 60
+multicores <- 16
 
 # Hardware - Memory size
-memsize <- 200
-
-# Classification map - labels
-default_label <- c(
-  "1" = "2ciclos",
-  "2" = "Agr. Semiperene",
-  "3" = "agua",
-  "4" = "Forest",
-  "5" = "Mountainside_Forest",
-  "6" = "past_arbustiva",
-  "7" = "past_herbacea",
-  "8" = "Riparian_Forest",
-  "9" = "Seasonally_Flooded_ICS",
-  "10" = "Silvicultura",
-  "11" = "vegetacao_secundaria",
-  "12" = "Wetland_ICS"
-)
+memsize <- 38
 
 
 #
@@ -73,13 +57,12 @@ terraclass_2022 <- load_terraclass_2022(multicores = multicores, memsize = memsi
 #
 # 3. Load classification
 #
-eco3_class <- load_restore_map(
+eco3_class <- load_restore_map_bdc(
   data_dir   = classification_dir,
   tiles      = "MOSAIC",
   multicores = multicores,
   memsize    = memsize,
-  version    = classification_version,
-  labels     = default_label
+  version    = classification_version
 )
 
 
