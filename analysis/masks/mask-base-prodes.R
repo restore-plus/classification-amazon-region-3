@@ -10,12 +10,12 @@ options(timeout = max(720, getOption("timeout")))
 #
 # General definitions
 #
-memsize    <- 25
-multicores <- 12
+memsize    <- 180
+multicores <- 64
 
 version <- "v2"
 
-mask_years <- 2018:2023
+mask_years <- 2010
 
 
 #
