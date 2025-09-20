@@ -22,14 +22,13 @@ mask_version <- "v1"
 classification_version <- "samples-v1-2010-eco3"
 
 # Classification - years
-classification_year <- 2000
+classification_year <- 2009
 
 # Hardware - Multicores
 multicores <- 64
 
 # Hardware - Memory size
 memsize <- 180
-
 
 #
 # 1. Define output directory
@@ -42,22 +41,18 @@ classification_dir <- (
   base_classifications_dir / classification_version / classification_year
 )
 
-
 #
 # 2. Load base masks
 #
 
 # PRODES data
-prodes <- load_prodes_2000(multicores = multicores, memsize = memsize)
+prodes <- load_prodes_2009(multicores = multicores, memsize = memsize)
 
 # Terraclass
 terraclass_2022 <- load_terraclass_2022(multicores = multicores, memsize = memsize)
 
 # Terraclass
-terraclass_2004 <- load_terraclass_2004(multicores = multicores, memsize = memsize)
-
-# Terraclass
-terraclass_2008 <- load_terraclass_2008(multicores = multicores, memsize = memsize)
+terraclass_2010 <- load_terraclass_2010(multicores = multicores, memsize = memsize)
 
 #
 # 3. Load classification
@@ -121,7 +116,7 @@ eco3_mask <- restoreutils::reclassify_rule3_pasture_wetland(
 # Rule 4
 eco3_mask <- restoreutils::reclassify_rule4_silviculture(
   cube       = eco3_mask,
-  mask       = terraclass_2008,
+  mask       = terraclass_2010,
   multicores = multicores,
   memsize    = memsize,
   output_dir = output_dir,
@@ -131,7 +126,7 @@ eco3_mask <- restoreutils::reclassify_rule4_silviculture(
 # Rule 5
 eco3_mask <- restoreutils::reclassify_rule5_silviculture_pasture(
   cube       = eco3_mask,
-  mask       = terraclass_2008,
+  mask       = terraclass_2010,
   multicores = multicores,
   memsize    = memsize,
   output_dir = output_dir,
@@ -141,7 +136,7 @@ eco3_mask <- restoreutils::reclassify_rule5_silviculture_pasture(
 # Rule 6
 eco3_mask <- restoreutils::reclassify_rule6_semiperennial(
   cube       = eco3_mask,
-  mask       = terraclass_2008,
+  mask       = terraclass_2010,
   multicores = multicores,
   memsize    = memsize,
   output_dir = output_dir,
@@ -151,7 +146,7 @@ eco3_mask <- restoreutils::reclassify_rule6_semiperennial(
 # Rule 7
 eco3_mask <- restoreutils::reclassify_rule17_semiperennial_glad(
   cube       = eco3_mask,
-  mask       = terraclass_2008,
+  mask       = terraclass_2010,
   multicores = multicores,
   memsize    = memsize,
   output_dir = output_dir,
@@ -161,7 +156,7 @@ eco3_mask <- restoreutils::reclassify_rule17_semiperennial_glad(
 # Rule 8
 eco3_mask <- restoreutils::reclassify_rule18_annual_agriculture_glad(
   cube       = eco3_mask,
-  mask       = terraclass_2004,
+  mask       = terraclass_2010,
   multicores = multicores,
   memsize    = memsize,
   output_dir = output_dir,
@@ -171,7 +166,7 @@ eco3_mask <- restoreutils::reclassify_rule18_annual_agriculture_glad(
 # Rule 9
 eco3_mask <- restoreutils::reclassify_rule9_minning(
   cube       = eco3_mask,
-  mask       = terraclass_2004,
+  mask       = terraclass_2010,
   multicores = multicores,
   memsize    = memsize,
   output_dir = output_dir,
@@ -181,7 +176,7 @@ eco3_mask <- restoreutils::reclassify_rule9_minning(
 # Rule 15
 eco3_mask <- restoreutils::reclassify_rule15_urban_area_glad(
   cube           = eco3_mask,
-  mask           = terraclass_2004,
+  mask           = terraclass_2010,
   reference_mask = terraclass_2022,
   multicores     = multicores,
   memsize        = memsize,
@@ -192,7 +187,7 @@ eco3_mask <- restoreutils::reclassify_rule15_urban_area_glad(
 # Rule 11
 eco3_mask <- restoreutils::reclassify_rule16_water_glad(
   cube       = eco3_mask,
-  mask       = terraclass_2008,
+  mask       = terraclass_2010,
   multicores = multicores,
   memsize    = memsize,
   output_dir = output_dir,
@@ -208,6 +203,7 @@ eco3_mask <- restoreutils::reclassify_rule12_non_forest(
   output_dir = output_dir,
   version    = "mask-prodes-step13"
 )
+
 
 #
 # 6. Save cube object

@@ -42,7 +42,6 @@ classification_dir <- (
   base_classifications_dir / classification_version / classification_year
 )
 
-
 #
 # 2. Load base masks
 #
@@ -81,7 +80,6 @@ eco3_class <- sits_clean(
   output_dir   = output_dir,
   version      = "mask-clean-step1"
 )
-
 
 #
 # 5. Apply reclassification rules
@@ -148,8 +146,9 @@ eco3_mask <- restoreutils::reclassify_rule6_semiperennial(
   version    = "mask-prodes-step7"
 )
 
+
 # Rule 7
-eco3_mask <- restoreutils::reclassify_rule7_semiperennial_pasture(
+eco3_mask <- restoreutils::reclassify_rule17_semiperennial_glad(
   cube       = eco3_mask,
   mask       = terraclass_2008,
   multicores = multicores,
@@ -159,9 +158,9 @@ eco3_mask <- restoreutils::reclassify_rule7_semiperennial_pasture(
 )
 
 # Rule 8
-eco3_mask <- restoreutils::reclassify_rule8_annual_agriculture(
+eco3_mask <- restoreutils::reclassify_rule18_annual_agriculture_glad(
   cube       = eco3_mask,
-  mask       = terraclass_2008,
+  mask       = terraclass_2004,
   multicores = multicores,
   memsize    = memsize,
   output_dir = output_dir,

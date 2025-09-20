@@ -22,7 +22,7 @@ mask_version <- "v1"
 classification_version <- "samples-v1-2010-eco3"
 
 # Classification - years
-classification_year <- 2000
+classification_year <- 2004
 
 # Hardware - Multicores
 multicores <- 64
@@ -48,7 +48,7 @@ classification_dir <- (
 #
 
 # PRODES data
-prodes <- load_prodes_2000(multicores = multicores, memsize = memsize)
+prodes <- load_prodes_2004(multicores = multicores, memsize = memsize)
 
 # Terraclass
 terraclass_2022 <- load_terraclass_2022(multicores = multicores, memsize = memsize)
