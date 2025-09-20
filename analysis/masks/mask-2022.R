@@ -25,10 +25,10 @@ classification_version <- "samples-v2-noperene-eco3"
 classification_year <- 2022
 
 # Hardware - Multicores
-multicores <- 16
+multicores <- 32
 
 # Hardware - Memory size
-memsize <- 38
+memsize <- 140
 
 
 #

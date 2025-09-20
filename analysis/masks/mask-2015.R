@@ -16,19 +16,19 @@ base_classifications_dir <- restoreutils::project_classifications_dir()
 mask_tiles <- c()
 
 # Mask - version
-mask_version <- "data-comparison-ogh"
+mask_version <- "v1"
 
 # Classification - version
-classification_version <- "samples-v2-eco3-ogh"
+classification_version <- "samples-v2-noperene-eco3"
 
 # Classification - years
 classification_year <- 2015
 
 # Hardware - Multicores
-multicores <- 40
+multicores <- 32
 
 # Hardware - Memory size
-memsize <- 180
+memsize <- 140
 
 
 #
@@ -63,10 +63,13 @@ terraclass_2014 <- load_terraclass_2014(multicores = multicores, memsize = memsi
 #
 # 3. Load classification
 #
-eco3_class <- load_restore_map(data_dir = classification_dir,
-                               multicores = multicores,
-                               memsize = memsize,
-                               version = classification_version)
+eco3_class <- load_restore_map_bdc(
+  data_dir   = classification_dir,
+  tiles      = "MOSAIC",
+  multicores = multicores,
+  memsize    = memsize,
+  version    = classification_version
+)
 
 
 #
