@@ -65,7 +65,6 @@ eco3_class <- load_restore_map_glad(
   tiles      = "MOSAIC"
 )
 
-
 #
 # 4. Clean data to reduce noise
 #
@@ -145,7 +144,7 @@ eco3_mask <- restoreutils::reclassify_rule6_semiperennial(
 )
 
 # Rule 7
-eco3_mask <- restoreutils::reclassify_rule7_semiperennial_pasture(
+eco3_mask <- restoreutils::reclassify_rule17_semiperennial_glad(
   cube       = eco3_mask,
   mask       = terraclass_2010,
   multicores = multicores,
@@ -155,7 +154,7 @@ eco3_mask <- restoreutils::reclassify_rule7_semiperennial_pasture(
 )
 
 # Rule 8
-eco3_mask <- restoreutils::reclassify_rule8_annual_agriculture(
+eco3_mask <- restoreutils::reclassify_rule18_annual_agriculture_glad(
   cube       = eco3_mask,
   mask       = terraclass_2010,
   multicores = multicores,
