@@ -25,10 +25,10 @@ classification_version <- "samples-v1-2010-eco3"
 classification_year <- 2006
 
 # Hardware - Multicores
-multicores <- 38
+multicores <- 80
 
 # Hardware - Memory size
-memsize <- 180
+memsize    <- 320
 
 
 #
@@ -167,7 +167,7 @@ eco3_mask <- restoreutils::reclassify_rule18_annual_agriculture_glad(
 # Rule 9
 eco3_mask <- restoreutils::reclassify_rule9_minning(
   cube       = eco3_mask,
-  mask       = terraclass_2004,
+  mask       = terraclass_2008,
   multicores = multicores,
   memsize    = memsize,
   output_dir = output_dir,
@@ -177,7 +177,7 @@ eco3_mask <- restoreutils::reclassify_rule9_minning(
 # Rule 15
 eco3_mask <- restoreutils::reclassify_rule15_urban_area_glad(
   cube           = eco3_mask,
-  mask           = terraclass_2004,
+  mask           = terraclass_2008,
   reference_mask = terraclass_2022,
   multicores     = multicores,
   memsize        = memsize,

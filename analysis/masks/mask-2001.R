@@ -25,10 +25,10 @@ classification_version <- "samples-v1-2010-eco3"
 classification_year <- 2001
 
 # Hardware - Multicores
-multicores <- 64
+multicores <- 80
 
 # Hardware - Memory size
-memsize <- 180
+memsize    <- 320
 
 
 #
@@ -59,6 +59,7 @@ terraclass_2004 <- load_terraclass_2004(multicores = multicores, memsize = memsi
 # Terraclass
 terraclass_2008 <- load_terraclass_2008(multicores = multicores, memsize = memsize)
 
+
 #
 # 3. Load classification
 #
@@ -69,6 +70,7 @@ eco3_class <- load_restore_map_glad(
   version    = classification_version,
   tiles      = "MOSAIC"
 )
+
 
 #
 # 4. Clean data to reduce noise

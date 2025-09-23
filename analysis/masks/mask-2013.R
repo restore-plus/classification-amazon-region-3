@@ -25,10 +25,10 @@ classification_version <- "samples-v1-2010-eco3"
 classification_year <- 2013
 
 # Hardware - Multicores
-multicores <- 64
+multicores <- 80
 
 # Hardware - Memory size
-memsize <- 180
+memsize    <- 320
 
 #
 # 1. Define output directory

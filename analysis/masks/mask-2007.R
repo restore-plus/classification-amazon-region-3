@@ -25,10 +25,10 @@ classification_version <- "samples-v1-2010-eco3"
 classification_year <- 2007
 
 # Hardware - Multicores
-multicores <- 38
+multicores <- 80
 
 # Hardware - Memory size
-memsize <- 180
+memsize    <- 320
 
 
 #
