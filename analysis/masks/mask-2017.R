@@ -25,11 +25,18 @@ classification_version <- "samples-v2-noperene-eco3"
 classification_year <- 2017
 
 # Hardware - Multicores
-multicores <- 32
+multicores <- 80
 
 # Hardware - Memory size
-memsize <- 140
+memsize    <- 320
 
+# ROI
+eco_region_roi <- restoreutils::roi_ecoregions(
+  region_id  = 3,
+  crs        = restoreutils::crs_bdc(),
+  as_union   = TRUE,
+  use_buffer = TRUE
+)
 
 #
 # 1. Define output directory
@@ -206,6 +213,16 @@ eco3_mask <- restoreutils::reclassify_rule12_non_forest(
   memsize    = memsize,
   output_dir = output_dir,
   version    = "mask-prodes-step13"
+)
+
+# Crop
+eco3_mask <- sits_mosaic(
+  cube       = eco3_mask,
+  crs        = restoreutils::crs_bdc(),
+  roi        = eco_region_roi,
+  multicores = multicores,
+  output_dir = output_dir,
+  version    = "mask-prodes-step14"
 )
 
 

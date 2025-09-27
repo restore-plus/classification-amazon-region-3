@@ -16,19 +16,27 @@ base_classifications_dir <- restoreutils::project_classifications_dir()
 mask_tiles <- c()
 
 # Mask - version
-mask_version <- "mask-v1"
+mask_version <- "v1"
 
 # Classification - version
-classification_version <- "samples-v2-eco3"
+classification_version <- "samples-v2-noperene-eco3"
 
 # Classification - years
 classification_year <- 2023
 
 # Hardware - Multicores
-multicores <- 40
+multicores <- 80
 
 # Hardware - Memory size
-memsize <- 180
+memsize    <- 320
+
+# ROI
+eco_region_roi <- restoreutils::roi_ecoregions(
+  region_id  = 3,
+  crs        = restoreutils::crs_bdc(),
+  as_union   = TRUE,
+  use_buffer = TRUE
+)
 
 
 #
@@ -57,9 +65,13 @@ terraclass_2022 <- load_terraclass_2022(multicores = multicores, memsize = memsi
 #
 # 3. Load classification
 #
-eco3_class <- load_restore_map(data_dir = classification_dir,
-                               multicores = multicores,
-                               memsize = memsize)
+eco3_class <- load_restore_map_bdc(
+  data_dir   = classification_dir,
+  multicores = multicores,
+  memsize    = memsize,
+  version    = classification_version,
+  tiles      = "MOSAIC"
+)
 
 
 #
@@ -199,6 +211,16 @@ eco3_mask <- restoreutils::reclassify_rule12_non_forest(
   memsize    = memsize,
   output_dir = output_dir,
   version    = "mask-prodes-step13"
+)
+
+# Crop
+eco3_mask <- sits_mosaic(
+  cube       = eco3_mask,
+  crs        = restoreutils::crs_bdc(),
+  roi        = eco_region_roi,
+  multicores = multicores,
+  output_dir = output_dir,
+  version    = "mask-prodes-step14"
 )
 
 
