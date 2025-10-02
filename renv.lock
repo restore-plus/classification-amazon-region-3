@@ -24,7 +24,8 @@
       "NeedsCompilation": "no",
       "Author": "Dirk Eddelbuettel [aut, cre] (<https://orcid.org/0000-0001-6419-907X>), John W. Emerson [aut], Michael J. Kane [aut] (<https://orcid.org/0000-0003-1899-6662>)",
       "Maintainer": "Dirk Eddelbuettel <edd@debian.org>",
-      "Repository": "CRAN"
+      "Repository": "RSPM",
+      "Encoding": "UTF-8"
     },
     "DBI": {
       "Package": "DBI",
@@ -2467,7 +2468,8 @@
       "NeedsCompilation": "no",
       "Author": "Henrik Bengtsson [aut, cre, cph]",
       "Maintainer": "Henrik Bengtsson <henrikb@braju.com>",
-      "Repository": "CRAN"
+      "Repository": "RSPM",
+      "Encoding": "UTF-8"
     },
     "logger": {
       "Package": "logger",
@@ -2790,7 +2792,8 @@
       "NeedsCompilation": "yes",
       "Author": "David Pierce [aut, cre] (<https://orcid.org/0000-0002-2453-9030>)",
       "Maintainer": "David Pierce <dpierce@ucsd.edu>",
-      "Repository": "CRAN"
+      "Repository": "RSPM",
+      "Encoding": "UTF-8"
     },
     "ntfy": {
       "Package": "ntfy",
@@ -3473,7 +3476,7 @@
       "Encoding": "UTF-8",
       "Language": "en-US",
       "Roxygen": "list(markdown = TRUE)",
-      "RoxygenNote": "7.3.2",
+      "RoxygenNote": "7.3.3",
       "ByteCompile": "true",
       "LazyData": "true",
       "Imports": [
@@ -3497,7 +3500,7 @@
       "RemoteUsername": "restore-plus",
       "RemoteRepo": "restore-utils",
       "RemoteRef": "main",
-      "RemoteSha": "5cad894ea011a684ed3fa179363e1c41059162f0"
+      "RemoteSha": "5a4c90cce7f489d7e6e032da6dc19b5c06d9cc14"
     },
     "rlang": {
       "Package": "rlang",
