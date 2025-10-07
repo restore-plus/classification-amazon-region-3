@@ -63,7 +63,7 @@ files_mask <- restoreutils::get_restore_assets_files(
 #
 # 3. Reclassify perene neighbor data
 #
-file_reclassified <- restoreutils::reclassify_rule19_temporal_trajectory_urban(
+file_reclassified <- restoreutils::reclassify_rule20_temporal_trajectory_urban(
   files                 = files,
   files_mask            = files_mask,
   file_out              = output_file,
