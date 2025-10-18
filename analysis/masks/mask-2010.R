@@ -16,7 +16,7 @@ base_classifications_dir <- restoreutils::project_classifications_dir()
 mask_tiles <- c()
 
 # Mask - version
-mask_version <- "test-perene-urban-area-v3"
+mask_version <- "rules-latest"
 
 # Classification - version
 classification_version <- "samples-v1-2010-eco3"
@@ -57,9 +57,6 @@ classification_dir <- (
 prodes <- load_prodes_2010(multicores = multicores, memsize = memsize)
 
 # Terraclass
-terraclass_2022 <- load_terraclass_2022(multicores = multicores, memsize = memsize)
-
-# Terraclass
 terraclass_2010 <- load_terraclass_2010(multicores = multicores, memsize = memsize)
 
 # Terraclass 2014
@@ -90,7 +87,6 @@ eco_class <- sits_clean(
   output_dir   = output_dir,
   version      = "step1"
 )
-
 
 #
 # 5. Apply reclassification rules
@@ -254,23 +250,13 @@ eco_mask <- restoreutils::contextual_cleaner(
   version      = "step18"
 )
 
-eco_mask <- restoreutils::reclassify_rule19_perene(
-  cube       = eco_mask,
-  mask       = terraclass_2010,
-  multicores = multicores,
-  memsize    = memsize,
-  output_dir = output_dir,
-  rarg_year  = classification_year,
-  version    = "step19"
-)
-
 eco_mask <- restoreutils::reclassify_rule16_water_glad(
   cube       = eco_mask,
   mask       = terraclass_2010,
   multicores = multicores,
   memsize    = memsize,
   output_dir = output_dir,
-  version    = "step20"
+  version    = "step19"
 )
 
 eco_mask <- restoreutils::reclassify_rule25_static_water_mask(
@@ -279,6 +265,16 @@ eco_mask <- restoreutils::reclassify_rule25_static_water_mask(
   multicores = multicores,
   memsize    = memsize,
   output_dir = output_dir,
+  version    = "step20"
+)
+
+eco_mask <- restoreutils::reclassify_rule19_perene(
+  cube       = eco_mask,
+  mask       = terraclass_2010,
+  multicores = multicores,
+  memsize    = memsize,
+  output_dir = output_dir,
+  rarg_year  = classification_year,
   version    = "step21"
 )
 
