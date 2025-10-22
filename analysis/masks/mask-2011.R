@@ -54,10 +54,13 @@ classification_dir <- (
 #
 
 # PRODES data
-prodes <- load_prodes_2010(multicores = multicores, memsize = memsize)
+prodes <- load_prodes_2011(multicores = multicores, memsize = memsize)
 
 # Terraclass
 terraclass_2010 <- load_terraclass_2010(multicores = multicores, memsize = memsize)
+
+# Terraclass
+terraclass_2012 <- load_terraclass_2012(multicores = multicores, memsize = memsize)
 
 # Terraclass 2014
 terraclass_2014 <- load_terraclass_2014(multicores = multicores, memsize = memsize)
@@ -121,7 +124,7 @@ eco_mask <- restoreutils::reclassify_rule3_pasture_wetland(
 
 eco_mask <- restoreutils::reclassify_rule4_silviculture(
   cube       = eco_mask,
-  mask       = terraclass_2010,
+  mask       = terraclass_2012,
   multicores = multicores,
   memsize    = memsize,
   output_dir = output_dir,
@@ -130,7 +133,7 @@ eco_mask <- restoreutils::reclassify_rule4_silviculture(
 
 eco_mask <- restoreutils::reclassify_rule5_silviculture_pasture(
   cube       = eco_mask,
-  mask       = terraclass_2010,
+  mask       = terraclass_2012,
   multicores = multicores,
   memsize    = memsize,
   output_dir = output_dir,
@@ -139,7 +142,7 @@ eco_mask <- restoreutils::reclassify_rule5_silviculture_pasture(
 
 eco_mask <- restoreutils::reclassify_rule6_semiperennial(
   cube       = eco_mask,
-  mask       = terraclass_2010,
+  mask       = terraclass_2012,
   multicores = multicores,
   memsize    = memsize,
   output_dir = output_dir,
@@ -148,7 +151,7 @@ eco_mask <- restoreutils::reclassify_rule6_semiperennial(
 
 eco_mask <- restoreutils::reclassify_rule17_semiperennial_glad(
   cube       = eco_mask,
-  mask       = terraclass_2010,
+  mask       = terraclass_2012,
   multicores = multicores,
   memsize    = memsize,
   output_dir = output_dir,
@@ -184,7 +187,7 @@ eco_mask <- restoreutils::reclassify_rule23_pasture_deforestation_in_nonforest(
 
 eco_mask <- restoreutils::reclassify_rule9_minning(
   cube       = eco_mask,
-  mask       = terraclass_2010,
+  mask       = terraclass_2012,
   multicores = multicores,
   memsize    = memsize,
   output_dir = output_dir,
@@ -193,7 +196,7 @@ eco_mask <- restoreutils::reclassify_rule9_minning(
 
 eco_mask <- restoreutils::reclassify_rule10_urban_area(
   cube           = eco_mask,
-  mask           = terraclass_2010,
+  mask           = terraclass_2012,
   multicores     = multicores,
   memsize        = memsize,
   output_dir     = output_dir,
@@ -202,7 +205,7 @@ eco_mask <- restoreutils::reclassify_rule10_urban_area(
 
 eco_mask <- restoreutils::reclassify_rule21_pasture_annual_agriculture(
   cube           = eco_mask,
-  mask           = terraclass_2010,
+  mask           = terraclass_2012,
   multicores     = multicores,
   memsize        = memsize,
   output_dir     = output_dir,
@@ -252,7 +255,7 @@ eco_mask <- restoreutils::contextual_cleaner(
 
 eco_mask <- restoreutils::reclassify_rule16_water_glad(
   cube       = eco_mask,
-  mask       = terraclass_2010,
+  mask       = terraclass_2012,
   multicores = multicores,
   memsize    = memsize,
   output_dir = output_dir,
@@ -270,13 +273,23 @@ eco_mask <- restoreutils::reclassify_rule25_static_water_mask(
 
 eco_mask <- restoreutils::reclassify_rule19_perene(
   cube       = eco_mask,
-  mask       = terraclass_2010,
+  mask       = terraclass_2012,
   multicores = multicores,
   memsize    = memsize,
   output_dir = output_dir,
   rarg_year  = classification_year,
   version    = "step21"
 )
+
+eco_mask <- restoreutils::reclassify_rule26_silviculture_pasture_vs(
+  cube       = eco_mask,
+  mask       = terraclass_2012,
+  multicores = multicores,
+  memsize    = memsize,
+  output_dir = output_dir,
+  version    = "step22"
+)
+
 
 # Crop
 eco_mask <- sits_mosaic(
@@ -285,7 +298,17 @@ eco_mask <- sits_mosaic(
   roi        = eco_region_roi,
   multicores = multicores,
   output_dir = output_dir,
-  version    = "step22"
+  version    = "step23"
+)
+
+# Generate stats
+cube_save_area_stats(
+  cube       = eco_mask,
+  multicores = multicores,
+  memsize    = memsize,
+  res        = 30,
+  output_dir = output_dir,
+  version    = "step23"
 )
 
 
