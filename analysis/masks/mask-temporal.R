@@ -98,12 +98,12 @@ perene_outfiles <- sapply(perene_mask_years, function(year) {
         version              = perene_version,
         multicores           = multicores,
         memsize              = memsize,
-        output_dir           = output_dir
+        output_dir           = perene_output_dir
     )
 })
 
 # Update perene files
-files[files[["year"]] == perene_mask_years, "path"] <- perene_outfiles
+files[files[["year"]] %in% perene_mask_years, "path"] <- perene_outfiles
 
 #
 # 5. Reclassify agriculture neighbor
@@ -129,8 +129,8 @@ file_brick <- restoreutils::reclassify_rule22_temporal_annual_agriculture(
 
 # Split raster brick in multiple files
 agri_files <- restoreutils::reclassify_temporal_results_to_maps(
-    years = files[["year"]], 
-    output_dir = output_dir, 
+    years      = files[["year"]], 
+    output_dir = agri_output_dir, 
     file_brick = file_brick, 
-    version = agri_version
+    version    = agri_version
 )
