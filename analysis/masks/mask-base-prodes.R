@@ -2,42 +2,34 @@ library(sits)
 library(restoreutils)
 
 #
-# Config: Connection timeout
-#
-options(timeout = max(720, getOption("timeout")))
-
-
-#
 # General definitions
 #
-memsize    <- 180
-multicores <- 64
+memsize    <- 320
+multicores <- 80
 
 version <- "v2"
 
-mask_years <- 2010
-
+years_to_prepare <- c(2000:2007, 2024)
+years_to_mask <- c(2000:2024)
 
 #
 # 1) Download Prodes data
 #
 restoreutils::prepare_prodes(
-  region_id = 3
+  region_id = 3,
+  years     = years_to_prepare
 )
 
 
 #
 # 2) Generate forest mask
 #
-# Note: We start generating masks in 2023, as 2024 is the most recent data, and
-#       all forest there is the current forest. So, there is no requirements for
-#       extra data transformations
-#
-purrr::map(mask_years, function(mask_year) {
-  restoreutils::prodes_generate_forest_mask(
-    target_year   = mask_year,
-    version       = version,
-    multicores    = multicores,
-    memsize       = memsize
+purrr::map(years_to_mask, function(mask_year) {
+  restoreutils::prodes_generate_mask(
+    target_year    = mask_year,
+    version        = version,
+    multicores     = multicores,
+    memsize        = memsize,
+    nonforest_mask = TRUE
   )
 })

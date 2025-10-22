@@ -1,0 +1,24 @@
+library(sits)
+library(restoreutils)
+
+#
+# General definitions
+#
+memsize    <- 320
+multicores <- 80
+
+year_to_prepare <- c(2004, 2008, 2010, 2012, 2014, 2018, 2020, 2022)
+
+#
+# 1) Download Terraclass data
+#
+restoreutils::prepare_terraclass(
+    years            = year_to_prepare,
+    region_id        = 3,
+    multicores       = multicores,
+    memsize          = memsize,
+    fix_other_uses   = TRUE,
+    fix_urban_area   = TRUE,
+    fix_non_forest   = TRUE,
+    fix_non_observed = TRUE
+)
