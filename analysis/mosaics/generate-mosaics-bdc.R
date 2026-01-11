@@ -32,7 +32,7 @@ multicores <- 52
 #
 # 1. Load eco region 3 shape
 #
-eco_region_roi <- restoreutils::roi_ecoregions(region_id = 3,
+eco_region_roi <- restoreutils::roi_amazon_regions(region_id = 3,
                                                crs = restoreutils::crs_bdc(),
                                                as_file = TRUE)
 
