@@ -1,5 +1,3 @@
-Sys.setenv("RESTOREPLUS_CUBE_DIR" = "/data/projects/classification-region-3-bytile/data/derived/cube-region-3/")
-
 set.seed(777)
 
 library(sits)
@@ -23,7 +21,7 @@ base_dropbox_dir <- restoreutils::dropbox_dir("mosaic") / processing_product
 bands <- c("SWIR16", "NIR08", "BLUE")
 
 # Processing years
-regularization_years <- c(2000, 2005, 2010)
+regularization_years <- 2015:2022
 
 # Hardware - Multicores
 multicores <- 52
@@ -77,7 +75,6 @@ for (regularization_year in regularization_years) {
     )
 
   }, error = function(e) {
-    print("error here")
     restoreutils::notify(processing_context,
                          "generate mosaics > error to generate tiles!")
   })

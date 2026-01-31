@@ -13,13 +13,13 @@ base_cubes_dir <- restoreutils::project_cubes_dir()
 base_classifications_dir <- restoreutils::project_classifications_dir()
 
 # Model
-model_version <- "random-forest-model_no-lbae_noperene"
+model_version <- "rf-samples_amazon_landsat_2022"
 
 # Classification - version
-classification_version <- "samples-v2-noperene-eco3"
+classification_version <- "rf-samples_amazon_landsat_2022"
 
 # Classification - years
-regularization_years <- 2022
+regularization_years <- 2015:2022
 
 # Hardware - Multicores
 multicores <- 32

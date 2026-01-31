@@ -8,13 +8,13 @@ library(restoreutils)
 #
 
 # Samples
-samples_file <- "data/derived/timeseries/samples-eco3-2010.rds"
+samples_file <- "data/derived/timeseries/samples_amazon_landsat_2010.rds"
 
 # Output dir
 base_output_dir <- "data/derived/"
 
 # Model version
-model_version <- "random-forest-model_eco3-2010"
+model_version <- "rf-samples_amazon_landsat_2010"
 
 
 #

@@ -21,7 +21,7 @@ base_dropbox_dir <- restoreutils::dropbox_dir("mosaic") / processing_product
 bands <- c("SWIR1", "NIR", "BLUE")
 
 # Processing years
-regularization_years <- c(2014)
+regularization_years <- 2000:2014
 
 # Hardware - Multicores
 multicores <- 52
